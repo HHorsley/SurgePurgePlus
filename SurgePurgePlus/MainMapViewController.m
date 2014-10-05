@@ -11,6 +11,7 @@
 
 @synthesize mapView;
 @synthesize locationManager;
+@synthesize surgePurgeCoords;
 
 
 - (void)viewDidLoad {
@@ -48,11 +49,30 @@
     [self.mapView setRegion:[self.mapView regionThatFits:region] animated:YES];
     
     // Add an annotation
-    MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
-    point.coordinate = userLocation.coordinate;
-    point.title = @"Your Current Location";
-    [self.mapView addAnnotation:point];
+    MKPointAnnotation *currentLocationPoint = [[MKPointAnnotation alloc] init];
+    currentLocationPoint.coordinate = userLocation.coordinate;
+    currentLocationPoint.title = @"Your Current Location";
+    [self.mapView addAnnotation:currentLocationPoint];
+    
+    MKPointAnnotation *destinationLocationPoint = [[MKPointAnnotation alloc] init];
+    destinationLocationPoint.coordinate = [self getCoordsOfLocationWhereYouCanPurgeSurge];
+    destinationLocationPoint.title = @"No surge here!";
+    [self.mapView addAnnotation:destinationLocationPoint];
 }
+
+
+- (CLLocationCoordinate2D)getCoordsOfLocationWhereYouCanPurgeSurge {
+    
+    NSLog(@"getCoords");
+    surgePurgeCoords = CLLocationCoordinate2DMake(42.374400, 71.116900);
+    
+    return surgePurgeCoords;
+    
+    
+}
+
+
+
 
 
 

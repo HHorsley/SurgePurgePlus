@@ -216,6 +216,11 @@
 					176077CD19E0B23E0073F531 = {
 						CreatedOnToolsVersion = 6.0.1;
 						DevelopmentTeam = 4NQA36W7LW;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					176077E919E0B23E0073F531 = {
 						CreatedOnToolsVersion = 6.0.1;
