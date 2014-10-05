@@ -29,6 +29,12 @@
                                     <action selector="EscapeSurgeButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="JRN-gr-1e9"/>
                                 </connections>
                             </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="{distance}" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uFh-r2-js7">
+                                <rect key="frame" x="28" y="615" width="319" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -36,6 +42,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="distanceLabel" destination="uFh-r2-js7" id="ojZ-eu-RRP"/>
                         <outlet property="escapeSurgeButton" destination="R3r-9y-Jbx" id="WBS-PY-HAO"/>
                         <outlet property="mapView" destination="iC7-cf-sBd" id="bi4-v4-ZOf"/>
                     </connections>
