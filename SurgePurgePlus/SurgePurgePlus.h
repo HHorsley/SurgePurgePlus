@@ -8,7 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
-extern CGPoint createPoint(double lat, double lon, double miles, double degrees);
-extern void getSurge(CGPoint p, void (^callback)(double someDouble));
-extern CGPoint escapeSurge(double lat, double lon);
+@interface SurgePurgePlus : NSObject
+
++ (CGPoint)createPointWithLatitude:(CGFloat)latitude longitude:(CGFloat)longitude miles:(CGFloat)miles degrees:(CGFloat)degrees;
++ (void)getSurge:(CGPoint)point callback:(void (^)(CGFloat surge))callback;
++ (void)escapeSurgeWithLatitude:(CGFloat)latitude longitude:(CGFloat)longitude callback:(void (^)(CGPoint point))callback;
+
+@end
