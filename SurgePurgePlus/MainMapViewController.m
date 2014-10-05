@@ -16,6 +16,9 @@
 
 
 - (IBAction)EscapeSurgeButton:(UIButton *)sender {
+    _escapeSurgeButton.hidden = YES;
+    _loadingGif.hidden = NO;
+
     MKPointAnnotation *destinationLocationPoint = [[MKPointAnnotation alloc] init];
     
     [SurgePurgePlus escapeSurgeWithLatitude:currentLocationPoint.coordinate.latitude longitude:currentLocationPoint.coordinate.longitude callback:^(CGPoint destination) {
@@ -25,7 +28,6 @@
         [self.mapView addAnnotation:destinationLocationPoint];
 
         [self drawRouteFrom:currentLocationPoint.coordinate to:destinationLocationPoint.coordinate];
-        _escapeSurgeButton.hidden = YES;
     }];
 }
 
@@ -140,7 +142,14 @@
             routeRenderer.strokeColor = [UIColor blueColor];
             
             [self.mapView addOverlay:line level:MKOverlayLevelAboveRoads];
-            NSLog(@"ETA = %f", rout.expectedTravelTime / 60.0);
+            _timeToDestination = [NSString stringWithFormat:@"Nearest surge-free is %d min away!", (int)ceilf(rout.expectedTravelTime / 60.0)];
+            _distanceLabel.text = _timeToDestination;
+            [_loadingGif setHidden:TRUE];
+            [_distanceLabel setHidden:FALSE];
+            NSLog(@"ETA = %@", _timeToDestination);
+
+            NSLog(@"ETA = %d", (int)ceilf(rout.expectedTravelTime / 60.0));
+ 
             
 //            NSArray *steps = [rout steps];
 //            NSLog(@"Total Steps : %lu",(unsigned long)[steps count]);
@@ -157,8 +166,8 @@
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay
 {
     MKPolylineRenderer *renderer = [[MKPolylineRenderer alloc] initWithPolyline:overlay];
-    renderer.strokeColor = [UIColor redColor];
-    renderer.lineWidth = 4.0;
+    renderer.strokeColor = [UIColor blueColor];
+    renderer.lineWidth = 6.0;
     return  renderer;
 }
 
