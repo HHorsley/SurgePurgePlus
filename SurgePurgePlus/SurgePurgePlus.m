@@ -6,12 +6,25 @@
 //  Copyright (c) 2014 YAH. All rights reserved.
 //
 
+/** Degrees to Radian **/
+#define toRadians( degrees ) ( ( degrees ) / 180.0 * M_PI )
+/** Radians to Degrees **/
+#define toDegrees( radians ) ( ( radians ) * ( 180.0 / M_PI ) )
+#define RADIUS 3959.0
+
 #import "SurgePurgePlus.h"
 
+// taken from http://www.movable-type.co.uk/scripts/latlong.html
+CGPoint createPoint(double lat1, double lon1, double miles, double degrees) {
+    double radians = toRadians(degrees);
+    double d = miles / RADIUS;
+    lat1 = toRadians(lat1);
+    lon1 = toRadians(lon1);
 
+    double lat2 = asin(sin(lat1) * cos(d) + cos(lat1) * sin(d) * cos(radians));
+    double lon2 = lon1 + atan2(sin(radians) * sin(d) * cos(lat1), cos(d) - sin(lat1) * sin(lat2));
 
-CGPoint createPoint(double lat, double lon, double miles, double degrees) {
-    return CGPointMake(lat, lon);
+    return CGPointMake(toDegrees(lat2), toDegrees(lon2));
 }
 
 double getSurge(CGPoint p) {
@@ -19,8 +32,9 @@ double getSurge(CGPoint p) {
 }
 
 CGPoint escapeSurge(double lat, double lon) {
-    double minSurge = 0.0;
-    CGPoint minPoint;
+    // Assume current spot is the first min
+    CGPoint minPoint = CGPointMake(lat, lon);
+    double minSurge = getSurge(minPoint);
     
     for (int i = 0; i < 360; i += 60) {
         CGPoint p = createPoint(lat, lon, 1.0, i);
