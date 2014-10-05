@@ -75,7 +75,11 @@
             NSLog(@"Surge at current location: %f", surge);
             // minSurge = surge;
             // demo-only
-            minSurge = 15.0;
+            if (surge < 1.2) {
+                minSurge = 15.0;
+            } else {
+                minSurge = surge;
+            }
         }
         dispatch_group_leave(group);
     }];

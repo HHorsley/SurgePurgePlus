@@ -31,7 +31,7 @@
 
 
 - (void)viewDidLoad {
-    NSLog(@"ViewDidLoad");
+    // NSLog(@"ViewDidLoad");
     [super viewDidLoad];
     //check to see if they have location servies on
     if ([CLLocationManager locationServicesEnabled] == YES) {
@@ -97,7 +97,7 @@
     if (nil == locationManager) {
         locationManager = [[CLLocationManager alloc] init];
     }
-    NSLog(@"startStandardUpdates");
+    // NSLog(@"startStandardUpdates");
     [locationManager requestWhenInUseAuthorization];
     locationManager.delegate = self;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -136,7 +136,7 @@
     
     [direction calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
         
-        NSLog(@"response = %@",response);
+        // NSLog(@"response = %@",response);
         NSArray *arrRoutes = [response routes];
         [arrRoutes enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             
@@ -159,9 +159,6 @@
             [_loadingGif setHidden:TRUE];
             [_distanceLabel setHidden:FALSE];
             NSLog(@"ETA = %@", _timeToDestination);
-
-            NSLog(@"ETA = %d", (int)ceilf(rout.expectedTravelTime / 60.0));
- 
             
 //            NSArray *steps = [rout steps];
 //            NSLog(@"Total Steps : %lu",(unsigned long)[steps count]);
