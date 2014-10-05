@@ -39,10 +39,7 @@ CGPoint escapeSurge(double lat, double lon) {
     for (int i = 0; i < 360; i += 60) {
         CGPoint p = createPoint(lat, lon, 1.0, i);
         double surge = getSurge(p);
-        if (minSurge && minSurge > surge) {
-            minSurge = surge;
-            minPoint = p;
-        } else {
+        if (minSurge > surge) {
             minSurge = surge;
             minPoint = p;
         }
