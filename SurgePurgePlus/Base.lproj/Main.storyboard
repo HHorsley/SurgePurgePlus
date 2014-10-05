@@ -35,8 +35,9 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="CzS-WL-g4W">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="redraw" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="CzS-WL-g4W">
                                 <rect key="frame" x="177" y="622" width="20" height="20"/>
+                                <rect key="contentStretch" x="0.0" y="0.0" width="0.49999999999999961" height="1"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
