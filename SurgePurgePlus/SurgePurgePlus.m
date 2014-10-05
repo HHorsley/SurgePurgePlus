@@ -30,7 +30,7 @@ CGPoint createPoint(double lat1, double lon1, double miles, double degrees) {
     return CGPointMake(toDegrees(lat2), toDegrees(lon2));
 }
 
-double getSurge(CGPoint p) {
+void getSurge(CGPoint p, void (^callback)(double someDouble)) {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager.requestSerializer setValue:@"Token oExcdluW-T23rusqa2_be7GBv_bXIGCW44nKdCPM" forHTTPHeaderField:@"Authorization"];
     NSDictionary *coords = @{
@@ -42,20 +42,34 @@ double getSurge(CGPoint p) {
     
     [manager GET:@"https://api.uber.com/v1/estimates/price" parameters:coords success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"JSON: %@", responseObject);
+
+        NSArray *prices = responseObject[@"prices"];
+        double uberXsurge = -1.0;
+        for (int i = 0; i < prices.count; i++) {
+            NSDictionary *price = prices[i];
+            if ([price[@"display_name"] isEqualToString:@"UberX"]) {
+                uberXsurge = [price[@"surge_multiplier"] doubleValue];
+                break;
+            }
+        }
+        callback(uberXsurge);
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
+        callback(-1.0);
     }];
-    return 0.0;
 }
 
 CGPoint escapeSurge(double lat, double lon) {
     // Assume current spot is the first min
     CGPoint minPoint = CGPointMake(lat, lon);
-    double minSurge = getSurge(minPoint);
+    double minSurge = 0.0;
+    
     
     for (int i = 0; i < 360; i += 60) {
         CGPoint p = createPoint(lat, lon, 1.0, i);
-        double surge = getSurge(p);
+        getSurge(p, ^(double surge){
+            
+        });
         if (minSurge > surge) {
             minSurge = surge;
             minPoint = p;

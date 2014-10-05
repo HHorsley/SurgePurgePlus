@@ -10,5 +10,5 @@
 #import <UIKit/UIKit.h>
 
 extern CGPoint createPoint(double lat, double lon, double miles, double degrees);
-extern double getSurge(CGPoint p);
+extern void getSurge(CGPoint p, void (^callback)(double someDouble));
 extern CGPoint escapeSurge(double lat, double lon);
