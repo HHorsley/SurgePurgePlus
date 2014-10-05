@@ -18,14 +18,15 @@
 - (IBAction)EscapeSurgeButton:(UIButton *)sender {
     MKPointAnnotation *destinationLocationPoint = [[MKPointAnnotation alloc] init];
     
-    destinationLocationPoint.coordinate = CLLocationCoordinate2DMake(42.374400, -71.116900);
-    destinationLocationPoint.title = @"No surge here!";
-    [self.mapView addAnnotation:destinationLocationPoint];
-    
-    [self drawRouteFrom:currentLocationPoint.coordinate to:destinationLocationPoint.coordinate];
-    _escapeSurgeButton.hidden = YES;
-    
-    
+    [SurgePurgePlus escapeSurgeWithLatitude:currentLocationPoint.coordinate.latitude longitude:currentLocationPoint.coordinate.longitude callback:^(CGPoint destination) {
+
+        destinationLocationPoint.coordinate = CLLocationCoordinate2DMake(destination.x, destination.y);
+        destinationLocationPoint.title = @"No surge here!";
+        [self.mapView addAnnotation:destinationLocationPoint];
+
+        [self drawRouteFrom:currentLocationPoint.coordinate to:destinationLocationPoint.coordinate];
+        _escapeSurgeButton.hidden = YES;
+    }];
 }
 
 
