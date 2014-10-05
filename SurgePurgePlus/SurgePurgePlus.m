@@ -65,7 +65,10 @@
     
     // Assume current spot is the first min
     __block CGPoint minPoint = CGPointMake(lat, lon);
-    __block CGFloat minSurge = 10.0;
+    __block CGFloat minSurge = 15.0;
+    __block int minDegrees = 0;
+    __block CGFloat distance = 0.5;
+
     dispatch_group_enter(group);
     [self getSurge:minPoint callback:^(CGFloat surge) {
         if (surge > 0) {
@@ -78,7 +81,7 @@
     }];
     
     for (int i = 0; i < 360; i += 60) {
-        CGPoint p = [self createPointWithLatitude:lat longitude:lon miles:0.5 degrees:i];
+        CGPoint p = [self createPointWithLatitude:lat longitude:lon miles:distance degrees:i];
         dispatch_group_enter(group);
         
         // Send async request
@@ -86,15 +89,34 @@
             if (surge > 0 && surge < minSurge) {
                 minSurge = surge;
                 minPoint = p;
+                minDegrees = i;
             }
             dispatch_group_leave(group);
         }];
     }
     dispatch_group_notify(group, queue, ^{
-        NSLog(@"Lowest surge is %f", minSurge);
-        if (callback) {
-            callback(minPoint);
+        NSLog(@"Lowest surge is %f at degrees %d", minSurge, minDegrees);
+
+        // Drill down on distance until we find the perfect spot
+        while (distance > 0.3) {
+            distance = distance / 2;
+            CGPoint p = [self createPointWithLatitude:lat longitude:lon miles:distance degrees:minDegrees];
+            dispatch_group_enter(group);
+            // Send async request
+            [self getSurge:p callback:^(CGFloat surge) {
+                if (surge > 0 && surge <= minSurge) {
+                    minSurge = surge;
+                    minPoint = p;
+                }
+                dispatch_group_leave(group);
+            }];
         }
+
+        dispatch_group_notify(group, queue, ^{
+            if (callback) {
+                callback(minPoint);
+            }
+        });
     });
 }
 
