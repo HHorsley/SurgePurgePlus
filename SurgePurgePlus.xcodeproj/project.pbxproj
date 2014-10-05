@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		175673D719E15B4800EE930A /* UberSurgeLogo_120.png in Resources */ = {isa = PBXBuildFile; fileRef = 175673D519E15B4800EE930A /* UberSurgeLogo_120.png */; };
+		175673D819E15B4800EE930A /* UberSurgeLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 175673D619E15B4800EE930A /* UberSurgeLogo.png */; };
+		175673DA19E15BF900EE930A /* UberSurgeLogo_57.png in Resources */ = {isa = PBXBuildFile; fileRef = 175673D919E15BF900EE930A /* UberSurgeLogo_57.png */; };
+		175673DC19E15C3600EE930A /* UberSurgeLogo_60.png in Resources */ = {isa = PBXBuildFile; fileRef = 175673DB19E15C3600EE930A /* UberSurgeLogo_60.png */; };
+		175673DE19E15D5600EE930A /* UberSurgeLogo_180.png in Resources */ = {isa = PBXBuildFile; fileRef = 175673DD19E15D5600EE930A /* UberSurgeLogo_180.png */; };
 		176077D419E0B23E0073F531 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 176077D319E0B23E0073F531 /* main.m */; };
 		176077D719E0B23E0073F531 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 176077D619E0B23E0073F531 /* AppDelegate.m */; };
 		176077DA19E0B23E0073F531 /* SurgePurgePlus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 176077D819E0B23E0073F531 /* SurgePurgePlus.xcdatamodeld */; };
@@ -18,6 +23,8 @@
 		176077FB19E0EE0E0073F531 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 176077FA19E0EE0E0073F531 /* MapKit.framework */; };
 		176077FD19E0EE140073F531 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 176077FC19E0EE140073F531 /* CoreLocation.framework */; };
 		1760780019E0EFBD0073F531 /* MainMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 176077FF19E0EFBD0073F531 /* MainMapViewController.m */; };
+		17A3E7D319E15EFB00E0034B /* UberSurgeLogoWhite_120.png in Resources */ = {isa = PBXBuildFile; fileRef = 17A3E7D119E15EFB00E0034B /* UberSurgeLogoWhite_120.png */; };
+		17A3E7D419E15EFB00E0034B /* UberSurgeLogoWhite_180.png in Resources */ = {isa = PBXBuildFile; fileRef = 17A3E7D219E15EFB00E0034B /* UberSurgeLogoWhite_180.png */; };
 		43BB1696E606A54AB7CE570E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E354D1E87A471E2CC55B1EB /* libPods.a */; };
 		6CDD3AA719E0B64E00E2C525 /* SurgePurgePlus.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CDD3AA619E0B64E00E2C525 /* SurgePurgePlus.m */; };
 /* End PBXBuildFile section */
@@ -34,6 +41,11 @@
 
 /* Begin PBXFileReference section */
 		0E354D1E87A471E2CC55B1EB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		175673D519E15B4800EE930A /* UberSurgeLogo_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UberSurgeLogo_120.png; sourceTree = "<group>"; };
+		175673D619E15B4800EE930A /* UberSurgeLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UberSurgeLogo.png; sourceTree = "<group>"; };
+		175673D919E15BF900EE930A /* UberSurgeLogo_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UberSurgeLogo_57.png; sourceTree = "<group>"; };
+		175673DB19E15C3600EE930A /* UberSurgeLogo_60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UberSurgeLogo_60.png; sourceTree = "<group>"; };
+		175673DD19E15D5600EE930A /* UberSurgeLogo_180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UberSurgeLogo_180.png; sourceTree = "<group>"; };
 		176077CE19E0B23E0073F531 /* SurgePurgePlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SurgePurgePlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		176077D219E0B23E0073F531 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		176077D319E0B23E0073F531 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -52,6 +64,8 @@
 		176077FC19E0EE140073F531 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		176077FE19E0EFBD0073F531 /* MainMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMapViewController.h; sourceTree = "<group>"; };
 		176077FF19E0EFBD0073F531 /* MainMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMapViewController.m; sourceTree = "<group>"; };
+		17A3E7D119E15EFB00E0034B /* UberSurgeLogoWhite_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UberSurgeLogoWhite_120.png; sourceTree = "<group>"; };
+		17A3E7D219E15EFB00E0034B /* UberSurgeLogoWhite_180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UberSurgeLogoWhite_180.png; sourceTree = "<group>"; };
 		6CDD3AA519E0B64E00E2C525 /* SurgePurgePlus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurgePurgePlus.h; sourceTree = "<group>"; };
 		6CDD3AA619E0B64E00E2C525 /* SurgePurgePlus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurgePurgePlus.m; sourceTree = "<group>"; };
 		B20EBF900238086BE5C83CDA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -132,6 +146,13 @@
 		176077D119E0B23E0073F531 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				17A3E7D119E15EFB00E0034B /* UberSurgeLogoWhite_120.png */,
+				17A3E7D219E15EFB00E0034B /* UberSurgeLogoWhite_180.png */,
+				175673DD19E15D5600EE930A /* UberSurgeLogo_180.png */,
+				175673DB19E15C3600EE930A /* UberSurgeLogo_60.png */,
+				175673D919E15BF900EE930A /* UberSurgeLogo_57.png */,
+				175673D519E15B4800EE930A /* UberSurgeLogo_120.png */,
+				175673D619E15B4800EE930A /* UberSurgeLogo.png */,
 				176077D219E0B23E0073F531 /* Info.plist */,
 				176077D319E0B23E0073F531 /* main.m */,
 			);
@@ -253,8 +274,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				176077E019E0B23E0073F531 /* Main.storyboard in Resources */,
+				17A3E7D419E15EFB00E0034B /* UberSurgeLogoWhite_180.png in Resources */,
+				175673DA19E15BF900EE930A /* UberSurgeLogo_57.png in Resources */,
+				175673D819E15B4800EE930A /* UberSurgeLogo.png in Resources */,
 				176077E519E0B23E0073F531 /* LaunchScreen.xib in Resources */,
+				17A3E7D319E15EFB00E0034B /* UberSurgeLogoWhite_120.png in Resources */,
 				176077E219E0B23E0073F531 /* Images.xcassets in Resources */,
+				175673DE19E15D5600EE930A /* UberSurgeLogo_180.png in Resources */,
+				175673D719E15B4800EE930A /* UberSurgeLogo_120.png in Resources */,
+				175673DC19E15C3600EE930A /* UberSurgeLogo_60.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +460,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FF3B8A7F91FAB3B2077041D0 /* Pods.debug.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SurgePurgePlus/Info.plist;
@@ -445,6 +475,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B20EBF900238086BE5C83CDA /* Pods.release.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SurgePurgePlus/Info.plist;
