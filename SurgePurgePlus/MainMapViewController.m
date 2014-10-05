@@ -65,14 +65,19 @@
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
     //[CLLocationManager requestWhenInUseAuthorization];
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 2000, 2000);
-    [self.mapView setRegion:[self.mapView regionThatFits:region] animated:YES];
     
     // Add an annotation
-    currentLocationPoint = [[MKPointAnnotation alloc] init];
-    currentLocationPoint.coordinate = userLocation.coordinate;
-    currentLocationPoint.title = @"Your Current Location";
-    [self.mapView addAnnotation:currentLocationPoint];
+    if (nil == currentLocationPoint) {
+        MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 2000, 2000);
+        [self.mapView setRegion:[self.mapView regionThatFits:region] animated:YES];
+
+        currentLocationPoint = [[MKPointAnnotation alloc] init];
+        currentLocationPoint.coordinate = userLocation.coordinate;
+        currentLocationPoint.title = @"Your Current Location";
+        [self.mapView addAnnotation:currentLocationPoint];
+    } else {
+        [locationManager stopUpdatingLocation];
+    }
     
     /*
     [SurgePurgePlus escapeSurgeWithLatitude:userLocation.coordinate.latitude longitude:userLocation.coordinate.longitude callback:^(CGPoint destination) {
