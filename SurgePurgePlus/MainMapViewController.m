@@ -55,20 +55,19 @@
     [self.mapView addAnnotation:currentLocationPoint];
     
     MKPointAnnotation *destinationLocationPoint = [[MKPointAnnotation alloc] init];
-    destinationLocationPoint.coordinate = [self getCoordsOfLocationWhereYouCanPurgeSurge];
+    
+    destinationLocationPoint.coordinate = CLLocationCoordinate2DMake(42.374400, -71.116900);
     destinationLocationPoint.title = @"No surge here!";
     [self.mapView addAnnotation:destinationLocationPoint];
-}
-
-
-- (CLLocationCoordinate2D)getCoordsOfLocationWhereYouCanPurgeSurge {
     
-    NSLog(@"getCoords");
-    surgePurgeCoords = CLLocationCoordinate2DMake(42.374400, 71.116900);
-    
-    return surgePurgeCoords;
-    
-    
+    /*
+    [SurgePurgePlus escapeSurgeWithLatitude:userLocation.coordinate.latitude longitude:userLocation.coordinate.longitude callback:^(CGPoint destination) {
+        
+        destinationLocationPoint.coordinate = CLLocationCoordinate2DMake(destination.x, destination.y);
+        destinationLocationPoint.title = @"No surge here!";
+        [self.mapView addAnnotation:destinationLocationPoint];
+    }];
+    */
 }
 
 
