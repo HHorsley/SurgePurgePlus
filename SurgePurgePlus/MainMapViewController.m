@@ -16,6 +16,9 @@
 
 
 - (IBAction)EscapeSurgeButton:(UIButton *)sender {
+    _escapeSurgeButton.hidden = YES;
+    _loadingGif.hidden = NO;
+
     MKPointAnnotation *destinationLocationPoint = [[MKPointAnnotation alloc] init];
     
     [SurgePurgePlus escapeSurgeWithLatitude:currentLocationPoint.coordinate.latitude longitude:currentLocationPoint.coordinate.longitude callback:^(CGPoint destination) {
@@ -25,7 +28,6 @@
         [self.mapView addAnnotation:destinationLocationPoint];
 
         [self drawRouteFrom:currentLocationPoint.coordinate to:destinationLocationPoint.coordinate];
-        _escapeSurgeButton.hidden = YES;
     }];
 }
 
@@ -142,6 +144,7 @@
             [self.mapView addOverlay:line level:MKOverlayLevelAboveRoads];
             _timeToDestination = [NSString stringWithFormat:@"Nearest surge-free is %d min away!", (int)ceilf(rout.expectedTravelTime / 60.0)];
             _distanceLabel.text = _timeToDestination;
+            [_loadingGif setHidden:TRUE];
             [_distanceLabel setHidden:FALSE];
             NSLog(@"ETA = %@", _timeToDestination);
 

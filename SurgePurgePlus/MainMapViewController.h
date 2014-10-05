@@ -20,7 +20,8 @@
 @property (nonatomic, strong) MKPointAnnotation *currentLocationPoint;
 @property (nonatomic, strong) NSString *timeToDestination;
 @property (nonatomic, strong) IBOutlet UIButton *escapeSurgeButton;
-@property (nonatomic, strong) IBOutlet UILabel *distanceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingGif;
 
 
 

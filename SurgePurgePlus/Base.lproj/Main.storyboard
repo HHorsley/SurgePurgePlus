@@ -35,6 +35,9 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="CzS-WL-g4W">
+                                <rect key="frame" x="177" y="622" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -44,6 +47,7 @@
                     <connections>
                         <outlet property="distanceLabel" destination="uFh-r2-js7" id="ojZ-eu-RRP"/>
                         <outlet property="escapeSurgeButton" destination="R3r-9y-Jbx" id="WBS-PY-HAO"/>
+                        <outlet property="loadingGif" destination="CzS-WL-g4W" id="vOf-ni-rpb"/>
                         <outlet property="mapView" destination="iC7-cf-sBd" id="bi4-v4-ZOf"/>
                     </connections>
                 </viewController>
