@@ -41,13 +41,13 @@
                              };
     
     [manager GET:@"https://api.uber.com/v1/estimates/price" parameters:coords success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
+        // NSLog(@"JSON: %@", responseObject);
         
         NSArray *prices = responseObject[@"prices"];
         CGFloat uberXsurge = -1.0;
         for (int i = 0; i < prices.count; i++) {
             NSDictionary *price = prices[i];
-            if ([price[@"display_name"] isEqualToString:@"UberX"]) {
+            if ([price[@"display_name"] isEqualToString:@"uberX"]) {
                 uberXsurge = [price[@"surge_multiplier"] doubleValue];
                 break;
             }
@@ -69,6 +69,7 @@
     dispatch_group_enter(group);
     [self getSurge:minPoint callback:^(CGFloat surge) {
         if (surge > 0) {
+            NSLog(@"Surge at current location: %f", surge);
             minSurge = surge;
         }
         dispatch_group_leave(group);
@@ -88,7 +89,7 @@
         }];
     }
     dispatch_group_notify(group, queue, ^{
-        NSLog(@"Final block is executed last");
+        NSLog(@"Lowest surge is %f", minSurge);
         if (callback) {
             callback(minPoint);
         }
