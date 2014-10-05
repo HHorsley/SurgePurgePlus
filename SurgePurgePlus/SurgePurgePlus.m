@@ -98,21 +98,27 @@
         NSLog(@"Lowest surge is %f at degrees %d", minSurge, minDegrees);
 
         // Drill down on distance until we find the perfect spot
-        while (distance > 0.3) {
-            distance = distance / 2;
+        for (int i = 0; i < 2; i++) {
             CGPoint p = [self createPointWithLatitude:lat longitude:lon miles:distance degrees:minDegrees];
             dispatch_group_enter(group);
             // Send async request
             [self getSurge:p callback:^(CGFloat surge) {
+                // Drill further down
                 if (surge > 0 && surge <= minSurge) {
                     minSurge = surge;
                     minPoint = p;
+                    distance = distance / 2;
+                    NSLog(@"Drilling down to %f", distance);
+                } else { // Drill up
+                    distance = distance * 2;
+                    NSLog(@"Drilling up to %f", distance);
                 }
                 dispatch_group_leave(group);
             }];
         }
 
         dispatch_group_notify(group, queue, ^{
+            NSLog(@"After drilling down to %f, we got the lowest surge at %f", distance, minSurge);
             if (callback) {
                 callback(minPoint);
             }
