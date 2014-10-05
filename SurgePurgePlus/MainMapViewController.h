@@ -16,6 +16,8 @@
 @property (nonatomic, strong) IBOutlet MKMapView *mapView;
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, assign) CLLocationCoordinate2D surgePurgeCoords;
+@property (nonatomic, strong) MKPointAnnotation *currentLocationPoint;
+@property (nonatomic, strong) IBOutlet UIButton *escapeSurgeButton;
 
 
 

@@ -12,6 +12,23 @@
 @synthesize mapView;
 @synthesize locationManager;
 @synthesize surgePurgeCoords;
+@synthesize currentLocationPoint;
+
+
+- (IBAction)EscapeSurgeButton:(UIButton *)sender {
+    MKPointAnnotation *destinationLocationPoint = [[MKPointAnnotation alloc] init];
+    
+    destinationLocationPoint.coordinate = CLLocationCoordinate2DMake(42.374400, -71.116900);
+    destinationLocationPoint.title = @"No surge here!";
+    [self.mapView addAnnotation:destinationLocationPoint];
+    
+    [self drawRouteFrom:currentLocationPoint.coordinate to:destinationLocationPoint.coordinate];
+     _escapeSurgeButton.hidden = YES;
+    
+    
+}
+
+
 
 
 - (void)viewDidLoad {
@@ -49,16 +66,10 @@
     [self.mapView setRegion:[self.mapView regionThatFits:region] animated:YES];
     
     // Add an annotation
-    MKPointAnnotation *currentLocationPoint = [[MKPointAnnotation alloc] init];
+    currentLocationPoint = [[MKPointAnnotation alloc] init];
     currentLocationPoint.coordinate = userLocation.coordinate;
     currentLocationPoint.title = @"Your Current Location";
     [self.mapView addAnnotation:currentLocationPoint];
-    
-    MKPointAnnotation *destinationLocationPoint = [[MKPointAnnotation alloc] init];
-    
-    destinationLocationPoint.coordinate = CLLocationCoordinate2DMake(42.374400, -71.116900);
-    destinationLocationPoint.title = @"No surge here!";
-    [self.mapView addAnnotation:destinationLocationPoint];
     
     /*
     [SurgePurgePlus escapeSurgeWithLatitude:userLocation.coordinate.latitude longitude:userLocation.coordinate.longitude callback:^(CGPoint destination) {
@@ -90,6 +101,68 @@
     [locationManager startUpdatingLocation];
 
 }
+
+
+
+- (void)drawRouteFrom:(CLLocationCoordinate2D)sourceCoords to:(CLLocationCoordinate2D)destinationCoords {
+    
+    MKPlacemark *source = [[MKPlacemark alloc]initWithCoordinate:sourceCoords addressDictionary:[NSDictionary dictionaryWithObjectsAndKeys:@"",@"", nil] ];
+    
+    MKMapItem *srcMapItem = [[MKMapItem alloc]initWithPlacemark:source];
+    [srcMapItem setName:@""];
+    
+    MKPlacemark *destination = [[MKPlacemark alloc]initWithCoordinate:destinationCoords addressDictionary:[NSDictionary dictionaryWithObjectsAndKeys:@"",@"", nil] ];
+    
+    MKMapItem *distMapItem = [[MKMapItem alloc]initWithPlacemark:destination];
+    [distMapItem setName:@""];
+    
+    
+    //safe
+    
+    MKDirectionsRequest *request = [[MKDirectionsRequest alloc]init];
+    [request setSource:srcMapItem];
+    [request setDestination:distMapItem];
+    [request setTransportType:MKDirectionsTransportTypeWalking];
+    
+    MKDirections *direction = [[MKDirections alloc]initWithRequest:request];
+    
+    [direction calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
+        
+        NSLog(@"response = %@",response);
+        NSArray *arrRoutes = [response routes];
+        [arrRoutes enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            
+            MKRoute *rout = obj;
+            
+            MKPolyline *line = [rout polyline];
+            MKPolylineRenderer *routeRenderer = [[MKPolylineRenderer alloc] initWithPolyline:line];
+            routeRenderer.strokeColor = [UIColor blueColor];
+            
+            [self.mapView addOverlay:line level:MKOverlayLevelAboveRoads];
+            NSLog(@"ETA = %f", rout.expectedTravelTime / 60.0);
+            
+//            NSArray *steps = [rout steps];
+//            NSLog(@"Total Steps : %lu",(unsigned long)[steps count]);
+//            NSLog(@"Rout Name : %@",rout.name);
+//            NSLog(@"Total Distance (in Meters) :%f",rout.distance);
+//            [steps enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+//                NSLog(@"Rout Instruction : %@",[obj instructions]);
+//                NSLog(@"Rout Distance : %f",[obj distance]);
+//            }];
+        }];
+    }];
+}
+
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay
+{
+    MKPolylineRenderer *renderer = [[MKPolylineRenderer alloc] initWithPolyline:overlay];
+    renderer.strokeColor = [UIColor redColor];
+    renderer.lineWidth = 4.0;
+    return  renderer;
+}
+
+
+
 
 
 
