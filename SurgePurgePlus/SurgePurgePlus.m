@@ -70,13 +70,15 @@
     [self getSurge:minPoint callback:^(CGFloat surge) {
         if (surge > 0) {
             NSLog(@"Surge at current location: %f", surge);
-            minSurge = surge;
+            // minSurge = surge;
+            // demo-only
+            minSurge = 15.0;
         }
         dispatch_group_leave(group);
     }];
     
     for (int i = 0; i < 360; i += 60) {
-        CGPoint p = [self createPointWithLatitude:lat longitude:lon miles:1.0 degrees:i];
+        CGPoint p = [self createPointWithLatitude:lat longitude:lon miles:0.5 degrees:i];
         dispatch_group_enter(group);
         
         // Send async request
