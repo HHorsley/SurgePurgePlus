@@ -7,14 +7,28 @@
 //
 
 #import "SurgePurgePlus.h"
-
-
+#import "AFNetworking.h"
 
 CGPoint createPoint(double lat, double lon, double miles, double degrees) {
     return CGPointMake(lat, lon);
+
 }
 
 double getSurge(CGPoint p) {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager.requestSerializer setValue:@"Token oExcdluW-T23rusqa2_be7GBv_bXIGCW44nKdCPM" forHTTPHeaderField:@"Authorization"];
+    NSDictionary *coords = @{
+                             @"start_latitude" : [NSNumber numberWithDouble:p.x],
+                             @"start_longitude" : [NSNumber numberWithDouble:p.y],
+                             @"end_latitude": [NSNumber numberWithDouble:p.x],
+                             @"end_longitude" : [NSNumber numberWithDouble:p.y],
+                             };
+    
+    [manager GET:@"https://api.uber.com/v1/estimates/price" parameters:coords success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"JSON: %@", responseObject);
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
     return 0.0;
 }
 
