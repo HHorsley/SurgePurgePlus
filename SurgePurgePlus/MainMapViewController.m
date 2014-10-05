@@ -19,15 +19,11 @@
     _escapeSurgeButton.hidden = YES;
     _loadingGif.hidden = NO;
 
-    MKPointAnnotation *destinationLocationPoint = [[MKPointAnnotation alloc] init];
     
     [SurgePurgePlus escapeSurgeWithLatitude:currentLocationPoint.coordinate.latitude longitude:currentLocationPoint.coordinate.longitude callback:^(CGPoint destination) {
 
-        destinationLocationPoint.coordinate = CLLocationCoordinate2DMake(destination.x, destination.y);
-        destinationLocationPoint.title = @"No surge here!";
-        [self.mapView addAnnotation:destinationLocationPoint];
-
-        [self drawRouteFrom:currentLocationPoint.coordinate to:destinationLocationPoint.coordinate];
+        CLLocationCoordinate2D dest = CLLocationCoordinate2DMake(destination.x, destination.y);
+        [self drawRouteFrom:currentLocationPoint.coordinate to:dest];
     }];
 }
 
@@ -150,6 +146,13 @@
             MKPolylineRenderer *routeRenderer = [[MKPolylineRenderer alloc] initWithPolyline:line];
             routeRenderer.strokeColor = [UIColor blueColor];
             
+            // Draw the destination pin
+            MKPointAnnotation *destinationLocationPoint = [[MKPointAnnotation alloc] init];
+            destinationLocationPoint.coordinate = destinationCoords;
+            destinationLocationPoint.title = @"No surge here!";
+            [self.mapView addAnnotation:destinationLocationPoint];
+
+            // Draw the route
             [self.mapView addOverlay:line level:MKOverlayLevelAboveRoads];
             _timeToDestination = [NSString stringWithFormat:@"Nearest surge-free is %d min away!", (int)ceilf(rout.expectedTravelTime / 60.0)];
             _distanceLabel.text = _timeToDestination;
