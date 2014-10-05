@@ -15,6 +15,7 @@
 		176077E219E0B23E0073F531 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 176077E119E0B23E0073F531 /* Images.xcassets */; };
 		176077E519E0B23E0073F531 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 176077E319E0B23E0073F531 /* LaunchScreen.xib */; };
 		176077F119E0B23E0073F531 /* SurgePurgePlusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 176077F019E0B23E0073F531 /* SurgePurgePlusTests.m */; };
+		6CDD3AA719E0B64E00E2C525 /* SurgePurgePlus.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CDD3AA619E0B64E00E2C525 /* SurgePurgePlus.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,8 @@
 		176077EA19E0B23E0073F531 /* SurgePurgePlusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SurgePurgePlusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		176077EF19E0B23E0073F531 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		176077F019E0B23E0073F531 /* SurgePurgePlusTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SurgePurgePlusTests.m; sourceTree = "<group>"; };
+		6CDD3AA519E0B64E00E2C525 /* SurgePurgePlus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurgePurgePlus.h; sourceTree = "<group>"; };
+		6CDD3AA619E0B64E00E2C525 /* SurgePurgePlus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurgePurgePlus.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +95,8 @@
 				176077E319E0B23E0073F531 /* LaunchScreen.xib */,
 				176077D819E0B23E0073F531 /* SurgePurgePlus.xcdatamodeld */,
 				176077D119E0B23E0073F531 /* Supporting Files */,
+				6CDD3AA519E0B64E00E2C525 /* SurgePurgePlus.h */,
+				6CDD3AA619E0B64E00E2C525 /* SurgePurgePlus.m */,
 			);
 			path = SurgePurgePlus;
 			sourceTree = "<group>";
@@ -226,6 +231,7 @@
 				176077DA19E0B23E0073F531 /* SurgePurgePlus.xcdatamodeld in Sources */,
 				176077DD19E0B23E0073F531 /* ViewController.m in Sources */,
 				176077D419E0B23E0073F531 /* main.m in Sources */,
+				6CDD3AA719E0B64E00E2C525 /* SurgePurgePlus.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +422,7 @@
 				176077F619E0B23E0073F531 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		176077F719E0B23E0073F531 /* Build configuration list for PBXNativeTarget "SurgePurgePlusTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +431,7 @@
 				176077F919E0B23E0073F531 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
