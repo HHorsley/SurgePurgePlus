@@ -28,6 +28,9 @@
 @property CGFloat timeToFindLocation;
 @property (nonatomic, assign) BOOL locationRecent;
 @property (nonatomic, assign) BOOL locationAccurate;
+@property MKPointAnnotation *destinationLocationPoint;
+@property (nonatomic, strong) IBOutlet UIButton *resetButton;
+
 
 
 @end

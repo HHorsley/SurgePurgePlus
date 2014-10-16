@@ -39,6 +39,19 @@
                                 <rect key="frame" x="177" y="622" width="20" height="20"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="0.49999999999999961" height="1"/>
                             </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UQY-BJ-rrd" customClass="ResetButton">
+                                <rect key="frame" x="285" y="40" width="72" height="72"/>
+                                <state key="normal">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="0.17717991050000001" green="1" blue="0.12019590450000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="resetButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="TuD-hW-Ocf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -50,6 +63,7 @@
                         <outlet property="escapeSurgeButton" destination="R3r-9y-Jbx" id="WBS-PY-HAO"/>
                         <outlet property="loadingGif" destination="CzS-WL-g4W" id="vOf-ni-rpb"/>
                         <outlet property="mapView" destination="iC7-cf-sBd" id="bi4-v4-ZOf"/>
+                        <outlet property="resetButton" destination="UQY-BJ-rrd" id="CIQ-N1-cHA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
