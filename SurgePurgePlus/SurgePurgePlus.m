@@ -13,6 +13,7 @@
 #define RADIUS 3959.0
 #define MINIMUM_SURGE 1.05
 #define INITIAL_DISTANCE 0.5
+#define NO_UBERX -9000.0
 
 #import "SurgePurgePlus.h"
 #import "AFNetworking.h"
@@ -44,7 +45,7 @@
     
     [manager GET:@"https://api.uber.com/v1/estimates/price" parameters:coords success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSArray *prices = responseObject[@"prices"];
-        CGFloat uberXsurge = -1.0;
+        CGFloat uberXsurge = NO_UBERX - 1.0;
         for (int i = 0; i < prices.count; i++) {
             NSDictionary *price = prices[i];
             if ([price[@"display_name"] isEqualToString:@"uberX"]) {
@@ -77,6 +78,11 @@
                 return;
             }
             minSurge = surge;
+        } else if (surge < NO_UBERX) {
+            if (callback) {
+                callback(@"UberX is not offered in your area. We cannot purge your Surge.", minPoint);
+            }
+            return;
         }
         dispatch_group_leave(group);
     }];
