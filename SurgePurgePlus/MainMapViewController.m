@@ -13,6 +13,7 @@
 @synthesize locationManager;
 @synthesize surgePurgeCoords;
 @synthesize currentLocationPoint;
+@synthesize destinationLocationPoint;
 
 
 - (IBAction)EscapeSurgeButton:(UIButton *)sender {
@@ -50,6 +51,13 @@
         [alert show];
         
     }
+    
+}
+
+- (IBAction)resetButton:(UIButton *)sender {
+    [self viewDidLoad];
+    //[self.mapView removeAnnotation:self.destinationLocationPoint];
+    
     
 }
 
@@ -149,7 +157,7 @@
             routeRenderer.strokeColor = [UIColor blueColor];
             
             // Draw the destination pin
-            MKPointAnnotation *destinationLocationPoint = [[MKPointAnnotation alloc] init];
+            self.destinationLocationPoint = [[MKPointAnnotation alloc] init];
             destinationLocationPoint.coordinate = destinationCoords;
             destinationLocationPoint.title = @"No surge here!";
             [self.mapView addAnnotation:destinationLocationPoint];
@@ -211,6 +219,8 @@
     [self.mapView addAnnotation:currentLocationAnnotation];
     [locationManager stopUpdatingLocation];
 }
+
+
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
     NSDate* eventDate = newLocation.timestamp;
