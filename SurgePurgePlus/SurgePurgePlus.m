@@ -36,15 +36,13 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager.requestSerializer setValue:@"Token 3vG3ZC4c1MdesRm_4cb0aBM436dDZqLvzOBcoxfn" forHTTPHeaderField:@"Authorization"];
     NSDictionary *coords = @{
-                             @"start_latitude": [NSNumber numberWithDouble:p.x],
-                             @"start_longitude": [NSNumber numberWithDouble:p.y],
-                             @"end_latitude": [NSNumber numberWithDouble:p.x],
-                             @"end_longitude": [NSNumber numberWithDouble:p.y],
+                             @"start_latitude": [NSNumber numberWithDouble: p.x],
+                             @"start_longitude": [NSNumber numberWithDouble: p.y],
+                             @"end_latitude": [NSNumber numberWithDouble: p.x],
+                             @"end_longitude": [NSNumber numberWithDouble: p.y],
                              };
     
     [manager GET:@"https://api.uber.com/v1/estimates/price" parameters:coords success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        // NSLog(@"JSON: %@", responseObject);
-        
         NSArray *prices = responseObject[@"prices"];
         CGFloat uberXsurge = -1.0;
         for (int i = 0; i < prices.count; i++) {
@@ -56,12 +54,11 @@
         }
         callback(uberXsurge);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
         callback(-1.0);
     }];
 }
 
-+ (void)escapeSurgeWithLatitude:(CGFloat)lat longitude:(CGFloat)lon callback:(void (^)(CGPoint point))callback {
++ (void)escapeSurgeWithLatitude:(CGFloat)lat longitude:(CGFloat)lon callback:(void (^)(NSString *error, CGPoint point))callback {
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_group_t group = dispatch_group_create();
     
@@ -73,11 +70,17 @@
     [self getSurge:minPoint callback:^(CGFloat surge) {
         if (surge > 0) {
             NSLog(@"Surge at current location: %f", surge);
+            if (surge < MINIMUM_SURGE) { // Current surge is 1.0
+                if (callback) {
+                    callback(@"You're currently in a Surge-free zone!", minPoint);
+                }
+                return;
+            }
             minSurge = surge;
         }
         dispatch_group_leave(group);
     }];
-    
+
     for (int i = 0; i < 360; i += 60) {
         CGPoint p = [self createPointWithLatitude:lat longitude:lon miles:INITIAL_DISTANCE degrees:i];
         dispatch_group_enter(group);
@@ -95,7 +98,7 @@
 
     dispatch_group_notify(group, queue, ^{
         // only drill down if we find a surge-less area
-        if (minSurge < MINIMUM_SURGE) {
+        if (minSurge > 0 && minSurge < MINIMUM_SURGE) {
             CGFloat distance = INITIAL_DISTANCE;
             while (distance >= 0) {
                 distance -= INITIAL_DISTANCE / 4.0;
@@ -111,12 +114,16 @@
             }
             dispatch_group_notify(group, queue, ^{
                 if (callback) {
-                    callback(minPoint);
+                    callback(@"", minPoint);
                 }
             });
-        } else {
+        } else if (minSurge > MINIMUM_SURGE) { // There's no escaping the surge
             if (callback) {
-                callback(minPoint);
+                callback(@"There's no escaping the Surge!", minPoint);
+            }
+        } else { // API returned bad stuff
+            if (callback) {
+                callback(@"We could not process your request. Please try again later.", minPoint);
             }
         }
     });

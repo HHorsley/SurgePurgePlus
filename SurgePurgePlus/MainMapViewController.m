@@ -19,11 +19,13 @@
     _escapeSurgeButton.hidden = YES;
     _loadingGif.hidden = NO;
 
-    
-    [SurgePurgePlus escapeSurgeWithLatitude:currentLocationPoint.coordinate.latitude longitude:currentLocationPoint.coordinate.longitude callback:^(CGPoint destination) {
-
-        CLLocationCoordinate2D dest = CLLocationCoordinate2DMake(destination.x, destination.y);
-        [self drawRouteFrom:currentLocationPoint.coordinate to:dest];
+    [SurgePurgePlus escapeSurgeWithLatitude:currentLocationPoint.coordinate.latitude longitude:currentLocationPoint.coordinate.longitude callback:^(NSString *error, CGPoint destination) {
+        if ([error length] == 0) {
+            CLLocationCoordinate2D dest = CLLocationCoordinate2DMake(destination.x, destination.y);
+            [self drawRouteFrom:currentLocationPoint.coordinate to:dest];
+        } else {
+            NSLog(@"The error was: %@", error);
+        }
     }];
 }
 

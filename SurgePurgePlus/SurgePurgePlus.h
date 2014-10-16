@@ -14,6 +14,6 @@
 
 + (CGPoint)createPointWithLatitude:(CGFloat)latitude longitude:(CGFloat)longitude miles:(CGFloat)miles degrees:(CGFloat)degrees;
 + (void)getSurge:(CGPoint)point callback:(void (^)(CGFloat surge))callback;
-+ (void)escapeSurgeWithLatitude:(CGFloat)latitude longitude:(CGFloat)longitude callback:(void (^)(CGPoint point))callback;
++ (void)escapeSurgeWithLatitude:(CGFloat)latitude longitude:(CGFloat)longitude callback:(void (^)(NSString *error, CGPoint point))callback;
 
 @end
