@@ -11,6 +11,8 @@
 /** Radians to Degrees **/
 #define toDegrees( radians ) ( ( radians ) * ( 180.0 / M_PI ) )
 #define RADIUS 3959.0
+#define MINIMUM_SURGE 1.05
+#define INITIAL_DISTANCE 0.5
 
 #import "SurgePurgePlus.h"
 #import "AFNetworking.h"
@@ -32,7 +34,7 @@
 
 + (void)getSurge:(CGPoint)p callback:(void (^)(CGFloat surge))callback {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager.requestSerializer setValue:@"Token oExcdluW-T23rusqa2_be7GBv_bXIGCW44nKdCPM" forHTTPHeaderField:@"Authorization"];
+    [manager.requestSerializer setValue:@"Token 3vG3ZC4c1MdesRm_4cb0aBM436dDZqLvzOBcoxfn" forHTTPHeaderField:@"Authorization"];
     NSDictionary *coords = @{
                              @"start_latitude": [NSNumber numberWithDouble:p.x],
                              @"start_longitude": [NSNumber numberWithDouble:p.y],
@@ -63,34 +65,26 @@
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_group_t group = dispatch_group_create();
     
-    // Assume current spot is the first min
     __block CGPoint minPoint = CGPointMake(lat, lon);
     __block CGFloat minSurge = 15.0;
     __block int minDegrees = 0;
-    __block CGFloat distance = 0.5;
 
     dispatch_group_enter(group);
     [self getSurge:minPoint callback:^(CGFloat surge) {
         if (surge > 0) {
             NSLog(@"Surge at current location: %f", surge);
-            // minSurge = surge;
-            // demo-only
-            if (surge < 1.2) {
-                minSurge = 15.0;
-            } else {
-                minSurge = surge;
-            }
+            minSurge = surge;
         }
         dispatch_group_leave(group);
     }];
     
     for (int i = 0; i < 360; i += 60) {
-        CGPoint p = [self createPointWithLatitude:lat longitude:lon miles:distance degrees:i];
+        CGPoint p = [self createPointWithLatitude:lat longitude:lon miles:INITIAL_DISTANCE degrees:i];
         dispatch_group_enter(group);
-        
-        // Send async request
         [self getSurge:p callback:^(CGFloat surge) {
-            if (surge > 0 && surge < minSurge) {
+            NSLog(@"Surge at %d degrees is %f", i, surge);
+            // only accept Surge of 1.0
+            if (surge > 0 && surge < MINIMUM_SURGE) {
                 minSurge = surge;
                 minPoint = p;
                 minDegrees = i;
@@ -98,35 +92,33 @@
             dispatch_group_leave(group);
         }];
     }
+
     dispatch_group_notify(group, queue, ^{
-        NSLog(@"Lowest surge is %f at degrees %d", minSurge, minDegrees);
-
-        // Drill down on distance until we find the perfect spot
-        for (int i = 0; i < 2; i++) {
-            CGPoint p = [self createPointWithLatitude:lat longitude:lon miles:distance degrees:minDegrees];
-            dispatch_group_enter(group);
-            // Send async request
-            [self getSurge:p callback:^(CGFloat surge) {
-                // Drill further down
-                if (surge > 0 && surge <= minSurge) {
-                    minSurge = surge;
-                    minPoint = p;
-                    distance = distance / 2;
-                    NSLog(@"Drilling down to %f", distance);
-                } else { // Drill up
-                    distance = distance * 2;
-                    NSLog(@"Drilling up to %f", distance);
+        // only drill down if we find a surge-less area
+        if (minSurge < MINIMUM_SURGE) {
+            CGFloat distance = INITIAL_DISTANCE;
+            while (distance >= 0) {
+                distance -= INITIAL_DISTANCE / 4.0;
+                CGPoint p = [self createPointWithLatitude:lat longitude:lon miles:distance degrees:minDegrees];
+                dispatch_group_enter(group);
+                [self getSurge:p callback:^(CGFloat surge) {
+                    if (surge > 0 && surge < MINIMUM_SURGE) {
+                        minSurge = surge;
+                        minPoint = p;
+                    }
+                    dispatch_group_leave(group);
+                }];
+            }
+            dispatch_group_notify(group, queue, ^{
+                if (callback) {
+                    callback(minPoint);
                 }
-                dispatch_group_leave(group);
-            }];
-        }
-
-        dispatch_group_notify(group, queue, ^{
-            NSLog(@"After drilling down to %f, we got the lowest surge at %f", distance, minSurge);
+            });
+        } else {
             if (callback) {
                 callback(minPoint);
             }
-        });
+        }
     });
 }
 
