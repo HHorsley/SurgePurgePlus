@@ -105,12 +105,12 @@
     dispatch_group_notify(group, queue, ^{
         // only drill down if we find a surge-less area
         if (minSurge > 0 && minSurge < MINIMUM_SURGE) {
-            CGFloat distance = INITIAL_DISTANCE;
-            while (distance >= 0) {
-                distance -= INITIAL_DISTANCE / 4.0;
-                CGPoint p = [self createPointWithLatitude:lat longitude:lon miles:distance degrees:minDegrees];
+            CGFloat smallestDistance = INITIAL_DISTANCE / 5.0;
+            for (int distance = 4; distance >= 1; distance--) {
+                CGPoint p = [self createPointWithLatitude:lat longitude:lon miles:(distance * smallestDistance) degrees:minDegrees];
                 dispatch_group_enter(group);
                 [self getSurge:p callback:^(CGFloat surge) {
+                    NSLog(@"Surge at %f miles away with angle %d is %f", (distance * smallestDistance), minDegrees, surge);
                     if (surge > 0 && surge < MINIMUM_SURGE) {
                         minSurge = surge;
                         minPoint = p;
