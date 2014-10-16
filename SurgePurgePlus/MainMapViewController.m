@@ -25,7 +25,19 @@
             CLLocationCoordinate2D dest = CLLocationCoordinate2DMake(destination.x, destination.y);
             [self drawRouteFrom:currentLocationPoint.coordinate to:dest];
         } else {
-            NSLog(@"The error was: %@", error);
+            // Runs it in Main UI thread
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [_loadingGif setHidden:YES];
+                [_escapeSurgeButton setHidden:NO];
+                
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Surge Purge"
+                                                                message:error
+                                                               delegate:self
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                [alert show];
+                NSLog(@"The error was: %@", error);
+            });
         }
     }];
 }
