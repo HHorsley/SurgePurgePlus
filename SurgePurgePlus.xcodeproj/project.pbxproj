@@ -24,6 +24,7 @@
 		176077FD19E0EE140073F531 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 176077FC19E0EE140073F531 /* CoreLocation.framework */; };
 		1760780019E0EFBD0073F531 /* MainMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 176077FF19E0EFBD0073F531 /* MainMapViewController.m */; };
 		1767CC2B19EF543F008BEB00 /* ResetButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1767CC2A19EF543F008BEB00 /* ResetButton.m */; };
+		17910B7C19F3312F008B9D6F /* EscapeSurgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 17910B7B19F3312F008B9D6F /* EscapeSurgeButton.m */; };
 		17A3E7D319E15EFB00E0034B /* UberSurgeLogoWhite_120.png in Resources */ = {isa = PBXBuildFile; fileRef = 17A3E7D119E15EFB00E0034B /* UberSurgeLogoWhite_120.png */; };
 		17A3E7D419E15EFB00E0034B /* UberSurgeLogoWhite_180.png in Resources */ = {isa = PBXBuildFile; fileRef = 17A3E7D219E15EFB00E0034B /* UberSurgeLogoWhite_180.png */; };
 		43BB1696E606A54AB7CE570E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E354D1E87A471E2CC55B1EB /* libPods.a */; };
@@ -67,6 +68,8 @@
 		176077FF19E0EFBD0073F531 /* MainMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMapViewController.m; sourceTree = "<group>"; };
 		1767CC2919EF543F008BEB00 /* ResetButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetButton.h; sourceTree = "<group>"; };
 		1767CC2A19EF543F008BEB00 /* ResetButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetButton.m; sourceTree = "<group>"; };
+		17910B7A19F3312F008B9D6F /* EscapeSurgeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EscapeSurgeButton.h; sourceTree = "<group>"; };
+		17910B7B19F3312F008B9D6F /* EscapeSurgeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EscapeSurgeButton.m; sourceTree = "<group>"; };
 		17A3E7D119E15EFB00E0034B /* UberSurgeLogoWhite_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UberSurgeLogoWhite_120.png; sourceTree = "<group>"; };
 		17A3E7D219E15EFB00E0034B /* UberSurgeLogoWhite_180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UberSurgeLogoWhite_180.png; sourceTree = "<group>"; };
 		6CDD3AA519E0B64E00E2C525 /* SurgePurgePlus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurgePurgePlus.h; sourceTree = "<group>"; };
@@ -138,6 +141,8 @@
 				176077DE19E0B23E0073F531 /* Main.storyboard */,
 				1767CC2919EF543F008BEB00 /* ResetButton.h */,
 				1767CC2A19EF543F008BEB00 /* ResetButton.m */,
+				17910B7A19F3312F008B9D6F /* EscapeSurgeButton.h */,
+				17910B7B19F3312F008B9D6F /* EscapeSurgeButton.m */,
 				176077E119E0B23E0073F531 /* Images.xcassets */,
 				176077E319E0B23E0073F531 /* LaunchScreen.xib */,
 				176077D819E0B23E0073F531 /* SurgePurgePlus.xcdatamodeld */,
@@ -339,6 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				176077D719E0B23E0073F531 /* AppDelegate.m in Sources */,
+				17910B7C19F3312F008B9D6F /* EscapeSurgeButton.m in Sources */,
 				176077DA19E0B23E0073F531 /* SurgePurgePlus.xcdatamodeld in Sources */,
 				1760780019E0EFBD0073F531 /* MainMapViewController.m in Sources */,
 				176077DD19E0B23E0073F531 /* ViewController.m in Sources */,

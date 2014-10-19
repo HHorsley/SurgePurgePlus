@@ -19,6 +19,7 @@
 - (IBAction)EscapeSurgeButton:(UIButton *)sender {
     _escapeSurgeButton.hidden = YES;
     _loadingGif.hidden = NO;
+    _resetButton.hidden = NO;
 
     [SurgePurgePlus escapeSurgeWithLatitude:currentLocationPoint.coordinate.latitude longitude:currentLocationPoint.coordinate.longitude callback:^(NSString *error, CGPoint destination) {
         if ([error length] == 0) {
@@ -46,7 +47,17 @@
 
 
 - (void)viewDidLoad {
-    // NSLog(@"ViewDidLoad");
+    NSLog(@"ViewDidLoad");
+    
+    //undo previous session
+    _resetButton.hidden = YES;
+    _escapeSurgeButton.hidden = NO;
+    _loadingGif.hidden = YES;
+    _distanceLabel.hidden = YES;
+    [self.mapView removeOverlay:_line];
+    [self.mapView removeAnnotation:destinationLocationPoint];
+    
+    
     [super viewDidLoad];
     //check to see if they have location servies on
     if ([CLLocationManager locationServicesEnabled] == YES) {
@@ -164,8 +175,8 @@
             
             MKRoute *rout = obj;
             
-            MKPolyline *line = [rout polyline];
-            MKPolylineRenderer *routeRenderer = [[MKPolylineRenderer alloc] initWithPolyline:line];
+            _line = [rout polyline];
+            MKPolylineRenderer *routeRenderer = [[MKPolylineRenderer alloc] initWithPolyline:_line];
             routeRenderer.strokeColor = [UIColor blueColor];
             
             // Draw the destination pin
@@ -175,12 +186,13 @@
             [self.mapView addAnnotation:destinationLocationPoint];
 
             // Draw the route
-            [self.mapView addOverlay:line level:MKOverlayLevelAboveRoads];
+            [self.mapView addOverlay:_line level:MKOverlayLevelAboveRoads];
             _timeToDestination = [NSString stringWithFormat:@"Nearest surge-free is %d min away!", (int)ceilf(rout.expectedTravelTime / 60.0)];
             _distanceLabel.text = _timeToDestination;
             [_loadingGif setHidden:TRUE];
             [_distanceLabel setHidden:FALSE];
             NSLog(@"ETA = %@", _timeToDestination);
+            
             
 //            NSArray *steps = [rout steps];
 //            NSLog(@"Total Steps : %lu",(unsigned long)[steps count]);
