@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1709B64919F4D5E80075DFF3 /* Main40.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1709B64119F4D5E80075DFF3 /* Main40.storyboard */; };
+		1709B64A19F4D5E80075DFF3 /* Main47.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1709B64319F4D5E80075DFF3 /* Main47.storyboard */; };
+		1709B64B19F4D5E80075DFF3 /* Main35.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1709B64519F4D5E80075DFF3 /* Main35.storyboard */; };
+		1709B64C19F4D5E80075DFF3 /* Main6.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1709B64719F4D5E80075DFF3 /* Main6.storyboard */; };
 		175673D719E15B4800EE930A /* UberSurgeLogo_120.png in Resources */ = {isa = PBXBuildFile; fileRef = 175673D519E15B4800EE930A /* UberSurgeLogo_120.png */; };
 		175673D819E15B4800EE930A /* UberSurgeLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 175673D619E15B4800EE930A /* UberSurgeLogo.png */; };
 		175673DA19E15BF900EE930A /* UberSurgeLogo_57.png in Resources */ = {isa = PBXBuildFile; fileRef = 175673D919E15BF900EE930A /* UberSurgeLogo_57.png */; };
@@ -43,6 +47,10 @@
 
 /* Begin PBXFileReference section */
 		0E354D1E87A471E2CC55B1EB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		1709B64219F4D5E80075DFF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SurgePurgePlus/Base.lproj/Main40.storyboard; sourceTree = "<group>"; };
+		1709B64419F4D5E80075DFF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SurgePurgePlus/Base.lproj/Main47.storyboard; sourceTree = "<group>"; };
+		1709B64619F4D5E80075DFF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SurgePurgePlus/Base.lproj/Main35.storyboard; sourceTree = "<group>"; };
+		1709B64819F4D5E80075DFF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SurgePurgePlus/Base.lproj/Main6.storyboard; sourceTree = "<group>"; };
 		175673D519E15B4800EE930A /* UberSurgeLogo_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UberSurgeLogo_120.png; sourceTree = "<group>"; };
 		175673D619E15B4800EE930A /* UberSurgeLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UberSurgeLogo.png; sourceTree = "<group>"; };
 		175673D919E15BF900EE930A /* UberSurgeLogo_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UberSurgeLogo_57.png; sourceTree = "<group>"; };
@@ -132,13 +140,17 @@
 		176077D019E0B23E0073F531 /* SurgePurgePlus */ = {
 			isa = PBXGroup;
 			children = (
+				1709B64119F4D5E80075DFF3 /* Main40.storyboard */,
+				1709B64319F4D5E80075DFF3 /* Main47.storyboard */,
+				1709B64519F4D5E80075DFF3 /* Main35.storyboard */,
+				1709B64719F4D5E80075DFF3 /* Main6.storyboard */,
+				176077DE19E0B23E0073F531 /* Main.storyboard */,
 				176077D519E0B23E0073F531 /* AppDelegate.h */,
 				176077D619E0B23E0073F531 /* AppDelegate.m */,
 				176077DB19E0B23E0073F531 /* ViewController.h */,
 				176077DC19E0B23E0073F531 /* ViewController.m */,
 				176077FE19E0EFBD0073F531 /* MainMapViewController.h */,
 				176077FF19E0EFBD0073F531 /* MainMapViewController.m */,
-				176077DE19E0B23E0073F531 /* Main.storyboard */,
 				1767CC2919EF543F008BEB00 /* ResetButton.h */,
 				1767CC2A19EF543F008BEB00 /* ResetButton.m */,
 				17910B7A19F3312F008B9D6F /* EscapeSurgeButton.h */,
@@ -283,16 +295,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1709B64919F4D5E80075DFF3 /* Main40.storyboard in Resources */,
 				176077E019E0B23E0073F531 /* Main.storyboard in Resources */,
 				17A3E7D419E15EFB00E0034B /* UberSurgeLogoWhite_180.png in Resources */,
 				175673DA19E15BF900EE930A /* UberSurgeLogo_57.png in Resources */,
+				1709B64A19F4D5E80075DFF3 /* Main47.storyboard in Resources */,
 				175673D819E15B4800EE930A /* UberSurgeLogo.png in Resources */,
 				176077E519E0B23E0073F531 /* LaunchScreen.xib in Resources */,
 				17A3E7D319E15EFB00E0034B /* UberSurgeLogoWhite_120.png in Resources */,
+				1709B64C19F4D5E80075DFF3 /* Main6.storyboard in Resources */,
 				176077E219E0B23E0073F531 /* Images.xcassets in Resources */,
 				175673DE19E15D5600EE930A /* UberSurgeLogo_180.png in Resources */,
 				175673D719E15B4800EE930A /* UberSurgeLogo_120.png in Resources */,
 				175673DC19E15C3600EE930A /* UberSurgeLogo_60.png in Resources */,
+				1709B64B19F4D5E80075DFF3 /* Main35.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,6 +389,42 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		1709B64119F4D5E80075DFF3 /* Main40.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1709B64219F4D5E80075DFF3 /* Base */,
+			);
+			name = Main40.storyboard;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		1709B64319F4D5E80075DFF3 /* Main47.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1709B64419F4D5E80075DFF3 /* Base */,
+			);
+			name = Main47.storyboard;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		1709B64519F4D5E80075DFF3 /* Main35.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1709B64619F4D5E80075DFF3 /* Base */,
+			);
+			name = Main35.storyboard;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		1709B64719F4D5E80075DFF3 /* Main6.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1709B64819F4D5E80075DFF3 /* Base */,
+			);
+			name = Main6.storyboard;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		176077DE19E0B23E0073F531 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

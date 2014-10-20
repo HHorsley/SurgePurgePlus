@@ -56,6 +56,7 @@
     _distanceLabel.hidden = YES;
     [self.mapView removeOverlay:_line];
     [self.mapView removeAnnotation:destinationLocationPoint];
+    [self.mapView removeAnnotation:_currentLocationAnnotation];
     
     
     [super viewDidLoad];
@@ -237,10 +238,10 @@
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(currentLocationPoint.coordinate, 2000, 2000);
     [self.mapView setRegion:[self.mapView regionThatFits:region] animated:YES];
 
-    MKPointAnnotation *currentLocationAnnotation = [[MKPointAnnotation alloc] init];
-    currentLocationAnnotation.coordinate = currentLocationPoint.coordinate;
-    currentLocationAnnotation.title = @"Your Current Location";
-    [self.mapView addAnnotation:currentLocationAnnotation];
+    _currentLocationAnnotation = [[MKPointAnnotation alloc] init];
+    _currentLocationAnnotation.coordinate = currentLocationPoint.coordinate;
+    _currentLocationAnnotation.title = @"Your Current Location";
+    [self.mapView addAnnotation:_currentLocationAnnotation];
     [locationManager stopUpdatingLocation];
 }
 

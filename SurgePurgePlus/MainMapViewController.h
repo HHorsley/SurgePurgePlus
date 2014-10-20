@@ -29,6 +29,7 @@
 @property (nonatomic, assign) BOOL locationRecent;
 @property (nonatomic, assign) BOOL locationAccurate;
 @property MKPointAnnotation *destinationLocationPoint;
+@property MKPointAnnotation *currentLocationAnnotation;
 @property (nonatomic, strong) IBOutlet UIButton *resetButton;
 @property (nonatomic, strong) MKPolyline *line;
 
