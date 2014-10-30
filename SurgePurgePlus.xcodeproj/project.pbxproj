@@ -32,6 +32,7 @@
 		17A3E7D319E15EFB00E0034B /* UberSurgeLogoWhite_120.png in Resources */ = {isa = PBXBuildFile; fileRef = 17A3E7D119E15EFB00E0034B /* UberSurgeLogoWhite_120.png */; };
 		17A3E7D419E15EFB00E0034B /* UberSurgeLogoWhite_180.png in Resources */ = {isa = PBXBuildFile; fileRef = 17A3E7D219E15EFB00E0034B /* UberSurgeLogoWhite_180.png */; };
 		43BB1696E606A54AB7CE570E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E354D1E87A471E2CC55B1EB /* libPods.a */; };
+		6C4ABF0A1A02DBE900541A30 /* Surge.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4ABF091A02DBE900541A30 /* Surge.m */; };
 		6CDD3AA719E0B64E00E2C525 /* SurgePurgePlus.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CDD3AA619E0B64E00E2C525 /* SurgePurgePlus.m */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +81,8 @@
 		17910B7B19F3312F008B9D6F /* EscapeSurgeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EscapeSurgeButton.m; sourceTree = "<group>"; };
 		17A3E7D119E15EFB00E0034B /* UberSurgeLogoWhite_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UberSurgeLogoWhite_120.png; sourceTree = "<group>"; };
 		17A3E7D219E15EFB00E0034B /* UberSurgeLogoWhite_180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UberSurgeLogoWhite_180.png; sourceTree = "<group>"; };
+		6C4ABF081A02DBE900541A30 /* Surge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Surge.h; sourceTree = "<group>"; };
+		6C4ABF091A02DBE900541A30 /* Surge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Surge.m; sourceTree = "<group>"; };
 		6CDD3AA519E0B64E00E2C525 /* SurgePurgePlus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurgePurgePlus.h; sourceTree = "<group>"; };
 		6CDD3AA619E0B64E00E2C525 /* SurgePurgePlus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurgePurgePlus.m; sourceTree = "<group>"; };
 		B20EBF900238086BE5C83CDA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -161,6 +164,8 @@
 				176077D119E0B23E0073F531 /* Supporting Files */,
 				6CDD3AA519E0B64E00E2C525 /* SurgePurgePlus.h */,
 				6CDD3AA619E0B64E00E2C525 /* SurgePurgePlus.m */,
+				6C4ABF081A02DBE900541A30 /* Surge.h */,
+				6C4ABF091A02DBE900541A30 /* Surge.m */,
 			);
 			path = SurgePurgePlus;
 			sourceTree = "<group>";
@@ -359,6 +364,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C4ABF0A1A02DBE900541A30 /* Surge.m in Sources */,
 				176077D719E0B23E0073F531 /* AppDelegate.m in Sources */,
 				17910B7C19F3312F008B9D6F /* EscapeSurgeButton.m in Sources */,
 				176077DA19E0B23E0073F531 /* SurgePurgePlus.xcdatamodeld in Sources */,
