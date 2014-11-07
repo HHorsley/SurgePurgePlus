@@ -188,11 +188,12 @@
 
             // Draw the route
             [self.mapView addOverlay:_line level:MKOverlayLevelAboveRoads];
-            _timeToDestination = [NSString stringWithFormat:@"Nearest surge-free is %d min away!", (int)ceilf(rout.expectedTravelTime / 60.0)];
+            _timeToDestination = [NSString stringWithFormat:@"Walk %d min to avoid surge pricing!", (int)ceilf(rout.expectedTravelTime / 60.0)];
             _distanceLabel.text = _timeToDestination;
             [_loadingGif setHidden:TRUE];
             [_distanceLabel setHidden:FALSE];
             NSLog(@"ETA = %@", _timeToDestination);
+            
             
             
 //            NSArray *steps = [rout steps];

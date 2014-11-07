@@ -28,6 +28,7 @@
 		176077FD19E0EE140073F531 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 176077FC19E0EE140073F531 /* CoreLocation.framework */; };
 		1760780019E0EFBD0073F531 /* MainMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 176077FF19E0EFBD0073F531 /* MainMapViewController.m */; };
 		1767CC2B19EF543F008BEB00 /* ResetButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1767CC2A19EF543F008BEB00 /* ResetButton.m */; };
+		177896531A02DEAB0003899F /* StartingUpScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 177896521A02DEAB0003899F /* StartingUpScreen.m */; };
 		17910B7C19F3312F008B9D6F /* EscapeSurgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 17910B7B19F3312F008B9D6F /* EscapeSurgeButton.m */; };
 		17A3E7D319E15EFB00E0034B /* UberSurgeLogoWhite_120.png in Resources */ = {isa = PBXBuildFile; fileRef = 17A3E7D119E15EFB00E0034B /* UberSurgeLogoWhite_120.png */; };
 		17A3E7D419E15EFB00E0034B /* UberSurgeLogoWhite_180.png in Resources */ = {isa = PBXBuildFile; fileRef = 17A3E7D219E15EFB00E0034B /* UberSurgeLogoWhite_180.png */; };
@@ -76,6 +77,8 @@
 		176077FF19E0EFBD0073F531 /* MainMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMapViewController.m; sourceTree = "<group>"; };
 		1767CC2919EF543F008BEB00 /* ResetButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetButton.h; sourceTree = "<group>"; };
 		1767CC2A19EF543F008BEB00 /* ResetButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetButton.m; sourceTree = "<group>"; };
+		177896511A02DEAB0003899F /* StartingUpScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartingUpScreen.h; sourceTree = "<group>"; };
+		177896521A02DEAB0003899F /* StartingUpScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartingUpScreen.m; sourceTree = "<group>"; };
 		17910B7A19F3312F008B9D6F /* EscapeSurgeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EscapeSurgeButton.h; sourceTree = "<group>"; };
 		17910B7B19F3312F008B9D6F /* EscapeSurgeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EscapeSurgeButton.m; sourceTree = "<group>"; };
 		17A3E7D119E15EFB00E0034B /* UberSurgeLogoWhite_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UberSurgeLogoWhite_120.png; sourceTree = "<group>"; };
@@ -151,6 +154,8 @@
 				176077DC19E0B23E0073F531 /* ViewController.m */,
 				176077FE19E0EFBD0073F531 /* MainMapViewController.h */,
 				176077FF19E0EFBD0073F531 /* MainMapViewController.m */,
+				177896511A02DEAB0003899F /* StartingUpScreen.h */,
+				177896521A02DEAB0003899F /* StartingUpScreen.m */,
 				1767CC2919EF543F008BEB00 /* ResetButton.h */,
 				1767CC2A19EF543F008BEB00 /* ResetButton.m */,
 				17910B7A19F3312F008B9D6F /* EscapeSurgeButton.h */,
@@ -366,6 +371,7 @@
 				176077DD19E0B23E0073F531 /* ViewController.m in Sources */,
 				176077D419E0B23E0073F531 /* main.m in Sources */,
 				1767CC2B19EF543F008BEB00 /* ResetButton.m in Sources */,
+				177896531A02DEAB0003899F /* StartingUpScreen.m in Sources */,
 				6CDD3AA719E0B64E00E2C525 /* SurgePurgePlus.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -526,12 +532,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Hunter Horsley (46C7MG4EVB)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hunter Horsley (46C7MG4EVB)";
 				INFOPLIST_FILE = SurgePurgePlus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "262ed858-5c27-46e0-a9ed-5eba93cfe501";
 			};
 			name = Debug;
 		};
@@ -541,12 +547,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Hunter Horsley (4NQA36W7LW)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Hunter Horsley (4NQA36W7LW)";
 				INFOPLIST_FILE = SurgePurgePlus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "291dacee-87ff-4faa-9da6-504d586a506b";
 			};
 			name = Release;
 		};
