@@ -17,6 +17,7 @@
 
 #import "SurgePurgePlus.h"
 #import "AFNetworking.h"
+#import "Surge.h"
 
 @implementation SurgePurgePlus
 
@@ -63,25 +64,27 @@
 + (void)escapeSurgeWithLatitude:(CGFloat)lat longitude:(CGFloat)lon callback:(void (^)(NSString *error, CGPoint point))callback {
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_group_t group = dispatch_group_create();
+    CGPoint firstPoint = CGPointMake(lat, lon);
     
-    __block CGPoint minPoint = CGPointMake(lat, lon);
-    __block CGFloat minSurge = 15.0;
-    __block int minDegrees = 0;
+    __block Surge* min = [[Surge alloc] init];
+    __block NSArray *surges = @[];
 
     dispatch_group_enter(group);
-    [self getSurge:minPoint callback:^(CGFloat surge) {
+    [self getSurge:min.point callback:^(CGFloat surge) {
+        surge = 5.0; // testing-only
         if (surge > 0) {
             NSLog(@"Surge at current location: %f", surge);
             if (surge < MINIMUM_SURGE) { // Current surge is 1.0
                 if (callback) {
-                    callback(@"You're currently in a Surge-free zone!", minPoint);
+                    callback(@"You're currently in a Surge-free zone!", min.point);
                 }
                 return;
             }
-            minSurge = surge;
+            min.surge = surge;
+            min.point = firstPoint;
         } else if (surge < NO_UBERX) {
             if (callback) {
-                callback(@"UberX is not offered in your area. We cannot purge your Surge.", minPoint);
+                callback(@"UberX is not offered in your area. We cannot purge your Surge.", min.point);
             }
             return;
         }
@@ -95,43 +98,75 @@
             NSLog(@"Surge at %d degrees is %f", i, surge);
             // only accept Surge of 1.0
             if (surge > 0 && surge < MINIMUM_SURGE) {
-                minSurge = surge;
-                minPoint = p;
-                minDegrees = i;
+                Surge *s = [[Surge alloc] init];
+                s.order = i;
+                s.point = p;
+                s.surge = surge;
+                surges = [surges arrayByAddingObject:s];
             }
             dispatch_group_leave(group);
         }];
     }
 
     dispatch_group_notify(group, queue, ^{
+        // Sort the surges array by degrees
+        surges = [surges sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+            int first = [(Surge*)a order];
+            int second = [(Surge*)b order];
+            return first < second;
+        }];
+
+        if ([surges count]) {
+            min = [surges lastObject];
+        }
+
         // only drill down if we find a surge-less area
-        if (minSurge > 0 && minSurge < MINIMUM_SURGE) {
+        if (min.surge > 0 && min.surge < MINIMUM_SURGE) {
+            surges = @[]; // reset surges array
+            int minDegrees = min.order;
             CGFloat smallestDistance = INITIAL_DISTANCE / 5.0;
+
             for (int distance = 4; distance >= 1; distance--) {
                 CGPoint p = [self createPointWithLatitude:lat longitude:lon miles:(distance * smallestDistance) degrees:minDegrees];
                 dispatch_group_enter(group);
                 [self getSurge:p callback:^(CGFloat surge) {
                     NSLog(@"Surge at %f miles away with angle %d is %f", (distance * smallestDistance), minDegrees, surge);
                     if (surge > 0 && surge < MINIMUM_SURGE) {
-                        minSurge = surge;
-                        minPoint = p;
+                        Surge *s = [[Surge alloc] init];
+                        s.point = p;
+                        s.order = distance;
+                        s.surge = surge;
+                        surges = [surges arrayByAddingObject:s];
                     }
                     dispatch_group_leave(group);
                 }];
             }
             dispatch_group_notify(group, queue, ^{
-                if (callback) {
-                    callback(@"", minPoint);
+                // Sort the surges array by distance
+                surges = [surges sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+                    int first = [(Surge*)a order];
+                    int second = [(Surge*)b order];
+                    return first < second;
+                }];
+
+                if ([surges count] > 0) {
+                    min = [surges lastObject];
                 }
+                if (callback) {
+                    callback(@"", min.point);
+                }
+                return;
             });
-        } else if (minSurge > MINIMUM_SURGE) { // There's no escaping the surge
+        } else if (min.surge > MINIMUM_SURGE) { // There's no escaping the surge
             if (callback) {
-                callback(@"There's no escaping the Surge!", minPoint);
+                callback(@"There's no escaping the Surge!", min.point);
             }
+            return;
         } else { // API returned bad stuff
             if (callback) {
-                callback(@"We could not process your request. Please try again later.", minPoint);
+                callback(@"We could not process your request. Please try again later.", min.point);
             }
+            return;
         }
     });
 }

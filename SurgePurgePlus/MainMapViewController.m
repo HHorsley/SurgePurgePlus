@@ -19,7 +19,6 @@
 - (IBAction)EscapeSurgeButton:(UIButton *)sender {
     _escapeSurgeButton.hidden = YES;
     _loadingGif.hidden = NO;
-    _resetButton.hidden = NO;
 
     [SurgePurgePlus escapeSurgeWithLatitude:currentLocationPoint.coordinate.latitude longitude:currentLocationPoint.coordinate.longitude callback:^(NSString *error, CGPoint destination) {
         if ([error length] == 0) {
@@ -192,6 +191,7 @@
             _distanceLabel.text = _timeToDestination;
             [_loadingGif setHidden:TRUE];
             [_distanceLabel setHidden:FALSE];
+            [_resetButton setHidden:NO];
             NSLog(@"ETA = %@", _timeToDestination);
             
             
